@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.transition.Explode;
+import android.support.transition.Transition;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.transition.Slide;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -24,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.support.transition.Transition;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -61,6 +67,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_article_list);
 
         mToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
 
 
         final View toolbarContainerView = findViewById(R.id.toolbar_container);
@@ -154,25 +162,25 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+//                    final Rect viewRect = new Rect();
+//                    view.getGlobalVisibleRect(viewRect);
+//
+//                    // create Explode transition with epicenter
+//                    Transition explode = new Explode()
+//                            .setEpicenterCallback(new Transition.EpicenterCallback() {
+//                                @Override
+//                                public Rect onGetEpicenter(Transition transition) {
+//                                    return viewRect;
+//                                }
+//                            });
+//                    explode.setDuration(1000);
+//                    TransitionManager.beginDelayedTransition(mRecyclerView, explode);
+//
+//                    // remove all views from Recycler View
+//                    mRecyclerView.setAdapter(null);
                     startActivity(new Intent(Intent.ACTION_VIEW,
                             ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
-
-
-                    /**
-                     * I am desperatelly trying to do and animation here but i could heres what i tried.
-                     */
-
-//                    Slide slide=new Slide();
-//                    slide.setDuration(500);
-//                    slide.setSlideEdge(Gravity.BOTTOM);
-//                    getWindow().setEnterTransition(slide);
-//                    getWindow().setReenterTransition(slide);
-
-//                    startActivity(new Intent(Intent.ACTION_VIEW,
-//                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()), ActivityOptions.makeSceneTransitionAnimation((ArticleListActivity.this).toBundle))));
-                /** PLEASE TEACH ME IN REVIEW
-                 *
-                 */
 
             }
             });

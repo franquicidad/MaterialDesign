@@ -11,7 +11,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:fitsSystemWindows="true"
-        android:elevation="8dp">
+        app:elevation="@dimen/cardView_elevation">
 
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/thumbnail"
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="40dp"
             android:text="TextView"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
